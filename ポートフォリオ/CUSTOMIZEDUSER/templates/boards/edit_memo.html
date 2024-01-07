@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>メモ編集画面</h3>
+<form method="POST">
+{% csrf_token %}
+{{ edit_memo_form.as_p }}
+<input type="submit" value="更新">
+</form>
+<p><a class="navbar-brand" href="{% url 'boards:delete_memo' id=id %}">削除する</a></p>
+{% endblock %}

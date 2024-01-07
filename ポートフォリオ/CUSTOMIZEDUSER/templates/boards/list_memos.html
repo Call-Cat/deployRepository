@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+{% if messages %}
+  {% for message in messages %}
+  <div>{{ message.message }}</div>
+  {% endfor %}
+{% endif %}
+<h3>メモ一覧画面</h3>
+<p><a class="navbar-brand" href="{% url 'boards:create_memo' %}">メモを新たに作成する</a></p>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>タイトル</th>
+      <th>作成者</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for memo in memos %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        {% if memo.user.id == user.id %}
+           <td><a href="{% url 'boards:edit_memo' id=memo.id %}">{{ memo.user }}</a></td>
+        {% else %}
+           <td>{{ memo.user }}</td>
+        {% endif %}
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

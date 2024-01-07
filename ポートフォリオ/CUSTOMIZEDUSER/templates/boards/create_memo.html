@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>メモ作成画面</h3>
+<form method="POST">
+{% csrf_token %}
+{{ create_memo_form.as_p }}
+<input type="submit" value="メモ作成">
+</form>
+{% endblock %}
